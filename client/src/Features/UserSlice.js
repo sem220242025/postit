@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { UsersData } from "../Exampledata";
 
+import * as ENV from "../config";
+
 //const initialState = { value: [] }; //list of user is an object with empty array as initial value
 const initialState = {
   value: UsersData,
@@ -36,7 +38,8 @@ export const registerUser = createAsyncThunk(
 //thunk to login
 export const login = createAsyncThunk("users/login", async (userData) => {
   try {
-    const response = await axios.post("http://localhost:3001/login", {
+    //const response = await axios.post("http://localhost:3001/login", {
+    const response = await axios.post(`${ENV.SERVER_URL}/login`, {
       email: userData.email,
       password: userData.password,
     });
