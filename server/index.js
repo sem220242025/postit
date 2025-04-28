@@ -8,9 +8,23 @@ import PostModel from "./Models/Posts.js";
 
 import * as ENV from "./config.js";
 
+/*  for local settings
 const app = express();
 app.use(express.json());
 app.use(cors());
+*/
+
+const app = express();
+
+//Middleware
+const corsOptions = {
+  origin: ENV.CLIENT_URL, //client URL local
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Enable credentials (cookies, authorization headers, etc.)
+};
+app.use(cors(corsOptions));
+
+app.use(express.json());
 
 //Database connection
 //const connectString =
