@@ -21,7 +21,8 @@ export const registerUser = createAsyncThunk(
   async (userData) => {
     try {
       //sends a POST request to the server along the request body object
-      const response = await axios.post("http://localhost:3001/registerUser", {
+      //const response = await axios.post("http://localhost:3001/registerUser", {
+      const response = await axios.post(`${ENV.SERVER_URL}/registerUser`, {
         name: userData.name,
         email: userData.email,
         password: userData.password,
