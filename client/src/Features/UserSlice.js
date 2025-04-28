@@ -60,7 +60,8 @@ export const login = createAsyncThunk("users/login", async (userData) => {
 export const logout = createAsyncThunk("/users/logout", async () => {
   try {
     // Send a request to your server to log the user out
-    const response = await axios.post("http://localhost:3001/logout");
+    //const response = await axios.post("http://localhost:3001/logout");
+    const response = await axios.post(`${ENV.SERVER_URL}/logout`);
   } catch (error) {}
 });
 

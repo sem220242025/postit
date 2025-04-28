@@ -14,6 +14,10 @@ app.use(express.json());
 app.use(cors());
 */
 
+/*
+const express = require("express");
+const cors = require("cors");
+//const ENV = require("./config/env"); // wherever CLIENT_URL is stored
 const app = express();
 
 //Middleware
@@ -36,6 +40,28 @@ mongoose.connect(connectString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+*/
+
+const app = express();
+
+// CORS middleware
+const corsOptions = {
+  origin: ENV.CLIENT_URL,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+app.use(express.json());
+
+const connectString = `mongodb+srv://${ENV.DB_USER}:${ENV.DB_PASSWORD}@${ENV.DB_CLUSTER}/${ENV.DB_NAME}?retryWrites=true&w=majority`;
+
+// Connect to MongoDB
+mongoose
+  .connect(connectString)
+  .then(() => console.log("✅ MongoDB connected successfully!"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 app.post("/registerUser", async (req, res) => {
   try {
