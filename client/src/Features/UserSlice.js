@@ -26,7 +26,10 @@ export const registerUser = createAsyncThunk(
         name: userData.name,
         email: userData.email,
         password: userData.password,
-      });
+      },
+                                        {
+                                          withCredentials: true,
+                                        });
       console.log(response);
       const user = response.data.user; //retrieve the response from the server
       return user; //return the response from the server as payload to the thunk
